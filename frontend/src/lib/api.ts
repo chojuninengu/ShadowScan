@@ -17,6 +17,21 @@ export interface AuthResponse {
   token: string;
 }
 
+export interface ScanRequest {
+  email_to_scan: string;
+}
+
+export interface ScanResponse {
+  scan_id: string;
+  message: string;
+}
+
+export interface FeedbackRequest {
+  message: string;
+  is_false_positive: boolean;
+  related_result_id?: string;
+}
+
 export interface ApiError {
   message: string;
   status?: number;
@@ -54,6 +69,18 @@ class ApiService {
     }
   }
 
+  private getAuthHeaders(token?: string): Record<string, string> {
+    const headers: Record<string, string> = {
+      'Content-Type': 'application/json',
+    };
+    
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`;
+    }
+    
+    return headers;
+  }
+
   async login(credentials: LoginRequest): Promise<AuthResponse> {
     return this.makeRequest<AuthResponse>('/login', {
       method: 'POST',
@@ -70,6 +97,28 @@ class ApiService {
 
   async healthCheck(): Promise<{ status: string }> {
     return this.makeRequest<{ status: string }>('/health');
+  }
+
+  async startScan(scanData: ScanRequest, token: string): Promise<ScanResponse> {
+    return this.makeRequest<ScanResponse>('/scan', {
+      method: 'POST',
+      headers: this.getAuthHeaders(token),
+      body: JSON.stringify(scanData),
+    });
+  }
+
+  async getScanResults(userId: string, token: string): Promise<any[]> {
+    return this.makeRequest<any[]>(`/results/${userId}`, {
+      method: 'GET',
+      headers: this.getAuthHeaders(token),
+    });
+  }
+
+  async submitFeedback(feedback: FeedbackRequest): Promise<{ status: string }> {
+    return this.makeRequest<{ status: string }>('/feedback', {
+      method: 'POST',
+      body: JSON.stringify(feedback),
+    });
   }
 }
 
