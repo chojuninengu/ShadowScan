@@ -87,7 +87,7 @@ const Index = () => {
           lg:translate-x-0 transition-transform duration-300 ease-in-out
           fixed lg:relative z-20 w-64 h-full bg-card/50 backdrop-blur-sm border-r border-border/50
         `}>
-          <div className="p-6 space-y-6">
+          <div className="p-4 md:p-6 space-y-4 md:space-y-6">
             <div className="space-y-2">
               {navigationItems.map((item) => (
                 <button
@@ -97,14 +97,14 @@ const Index = () => {
                     setSidebarOpen(false);
                   }}
                   className={`
-                    w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-all duration-200
+                    w-full flex items-center gap-2 md:gap-3 px-3 md:px-4 py-3 md:py-4 rounded-lg text-left transition-all duration-200 min-h-[3rem] md:min-h-[3.5rem] text-sm md:text-base
                     ${activeTab === item.id 
                       ? 'bg-gradient-primary text-primary-foreground shadow-cyber' 
                       : 'hover:bg-secondary/50 text-muted-foreground hover:text-foreground'
                     }
                   `}
                 >
-                  <item.icon className="w-5 h-5" />
+                  <item.icon className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0" />
                   <span className="font-medium">{item.label}</span>
                 </button>
               ))}
