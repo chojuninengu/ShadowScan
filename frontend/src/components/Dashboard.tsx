@@ -9,42 +9,19 @@ import {
   Zap, 
   Globe,
   Eye,
-  Clock
+  Clock,
+  Brain
 } from "lucide-react";
 
-const recentScans = [
-  {
-    target: "john.doe@email.com",
-    status: "completed",
-    exposures: 12,
-    sources: 3,
-    timestamp: "2 minutes ago",
-    risk: "high"
-  },
-  {
-    target: "john_doe",
-    status: "running",
-    exposures: 4,
-    sources: 2,
-    timestamp: "5 minutes ago",
-    risk: "medium"
-  },
-  {
-    target: "+1-555-0123",
-    status: "completed",
-    exposures: 2,
-    sources: 1,
-    timestamp: "1 hour ago",
-    risk: "low"
-  }
-];
-
-const exposureCategories = [
-  { category: "Email Addresses", count: 8, color: "bg-destructive", percentage: 35, trend: "+2 new" },
-  { category: "Usernames", count: 12, color: "bg-cyber-orange", percentage: 28, trend: "+1 new" },
-  { category: "Phone Numbers", count: 3, color: "bg-cyber-yellow", percentage: 20, trend: "No change" },
-  { category: "Social Profiles", count: 15, color: "bg-cyber-green", percentage: 17, trend: "+3 new" }
-];
+// This would come from your API/state management
+const mockData = {
+  totalScans: 0,
+  dataExposures: 0,
+  sourcesMonitored: 0,
+  protectionScore: 0,
+  recentScans: [],
+  exposureCategories: []
+};
 
 export function Dashboard() {
   return (
@@ -68,10 +45,10 @@ export function Dashboard() {
             <Shield className="h-4 w-4 text-primary" />
           </CardHeader>
           <CardContent className="relative">
-            <div className="text-3xl font-bold text-primary">47</div>
+            <div className="text-3xl font-bold text-primary">{mockData.totalScans}</div>
             <p className="text-xs text-muted-foreground">
               <TrendingUp className="inline w-3 h-3 mr-1" />
-              +3 this week
+              Start your first scan
             </p>
           </CardContent>
         </Card>
@@ -83,10 +60,10 @@ export function Dashboard() {
             <Eye className="h-4 w-4 text-destructive" />
           </CardHeader>
           <CardContent className="relative">
-            <div className="text-3xl font-bold text-destructive">23</div>
+            <div className="text-3xl font-bold text-destructive">{mockData.dataExposures}</div>
             <p className="text-xs text-muted-foreground">
               <AlertTriangle className="inline w-3 h-3 mr-1" />
-              6 new this week
+              No exposures found
             </p>
           </CardContent>
         </Card>
@@ -98,10 +75,10 @@ export function Dashboard() {
             <Globe className="h-4 w-4 text-cyber-green" />
           </CardHeader>
           <CardContent className="relative">
-            <div className="text-3xl font-bold text-cyber-green">1,247</div>
+            <div className="text-3xl font-bold text-cyber-green">{mockData.sourcesMonitored}</div>
             <p className="text-xs text-muted-foreground">
-              <TrendingUp className="inline w-3 h-3 mr-1" />
-              +147 new sources
+              <CheckCircle className="inline w-3 h-3 mr-1" />
+              Active monitoring
             </p>
           </CardContent>
         </Card>
@@ -110,84 +87,93 @@ export function Dashboard() {
           <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-transparent" />
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 relative">
             <CardTitle className="text-sm font-medium">Protection Score</CardTitle>
-            <CheckCircle className="h-4 w-4 text-accent" />
+            <Zap className="h-4 w-4 text-accent" />
           </CardHeader>
           <CardContent className="relative">
-            <div className="text-3xl font-bold text-accent">87%</div>
-            <p className="text-xs text-muted-foreground">
-              <TrendingUp className="inline w-3 h-3 mr-1" />
-              +5% this month
-            </p>
+            <div className="text-3xl font-bold text-accent">{mockData.protectionScore}%</div>
+            <Progress value={mockData.protectionScore} className="mt-2" />
           </CardContent>
         </Card>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Recent Scans */}
-        <Card className="cyber-border bg-card/50 backdrop-blur-sm">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Clock className="w-5 h-5 text-primary" />
-              Recent Personal Scans
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {recentScans.map((scan, index) => (
-              <div key={index} className="flex items-center justify-between p-4 rounded-lg bg-secondary/30 border border-border/50">
-                <div className="flex items-center gap-4">
-                  <div className={`w-3 h-3 rounded-full ${
-                    scan.status === 'completed' ? 'bg-cyber-green' : 
-                    scan.status === 'running' ? 'bg-primary animate-pulse' : 'bg-destructive'
-                  }`} />
-                  <div>
-                    <div className="font-medium">{scan.target}</div>
-                    <div className="text-sm text-muted-foreground">
-                      {scan.exposures} exposures • {scan.sources} sources • {scan.timestamp}
-                    </div>
-                  </div>
+      {/* Quick Actions */}
+      <Card className="cyber-border bg-card/50 backdrop-blur-sm">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Zap className="w-5 h-5 text-primary" />
+            Quick Actions
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="p-4 rounded-lg bg-secondary/50 border border-border/50 hover:border-primary/50 transition-colors cursor-pointer">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-gradient-primary flex items-center justify-center">
+                  <Shield className="w-5 h-5 text-primary-foreground" />
                 </div>
-                <Badge variant={
-                  scan.risk === 'high' ? 'destructive' : 
-                  scan.risk === 'medium' ? 'secondary' : 'outline'
-                } className={
-                  scan.risk === 'high' ? 'bg-destructive/20 text-destructive border-destructive/30' :
-                  scan.risk === 'medium' ? 'bg-cyber-orange/20 text-cyber-orange border-cyber-orange/30' :
-                  'bg-cyber-green/20 text-cyber-green border-cyber-green/30'
-                }>
-                  {scan.risk}
-                </Badge>
+                <div>
+                  <h3 className="font-semibold">Start New Scan</h3>
+                  <p className="text-sm text-muted-foreground">Scan for personal data exposure</p>
+                </div>
               </div>
-            ))}
-          </CardContent>
-        </Card>
+            </div>
 
-        {/* Risk Distribution */}
-        <Card className="cyber-border bg-card/50 backdrop-blur-sm">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <AlertTriangle className="w-5 h-5 text-primary" />
-              Exposure Categories
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            {exposureCategories.map((category, index) => (
-              <div key={index} className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <span className="font-medium">{category.category}</span>
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm text-muted-foreground">{category.count} found</span>
-                    <span className="text-xs text-cyber-green">{category.trend}</span>
-                  </div>
+            <div className="p-4 rounded-lg bg-secondary/50 border border-border/50 hover:border-primary/50 transition-colors cursor-pointer">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-gradient-primary flex items-center justify-center">
+                  <Eye className="w-5 h-5 text-primary-foreground" />
                 </div>
-                <Progress 
-                  value={category.percentage} 
-                  className="h-2"
-                />
+                <div>
+                  <h3 className="font-semibold">View Reports</h3>
+                  <p className="text-sm text-muted-foreground">Check your exposure history</p>
+                </div>
               </div>
-            ))}
-          </CardContent>
-        </Card>
-      </div>
+            </div>
+
+            <div className="p-4 rounded-lg bg-secondary/50 border border-border/50 hover:border-primary/50 transition-colors cursor-pointer">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-gradient-primary flex items-center justify-center">
+                  <Brain className="w-5 h-5 text-primary-foreground" />
+                </div>
+                <div>
+                  <h3 className="font-semibold">AI Assistant</h3>
+                  <p className="text-sm text-muted-foreground">Get privacy recommendations</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Recent Activity */}
+      <Card className="cyber-border bg-card/50 backdrop-blur-sm">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Clock className="w-5 h-5 text-primary" />
+            Recent Activity
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          {mockData.recentScans.length === 0 ? (
+            <div className="text-center py-8">
+              <div className="w-16 h-16 rounded-full bg-secondary/50 flex items-center justify-center mx-auto mb-4">
+                <Shield className="w-8 h-8 text-muted-foreground" />
+              </div>
+              <h3 className="text-lg font-semibold mb-2">No scans yet</h3>
+              <p className="text-muted-foreground mb-4">
+                Start your first privacy scan to begin monitoring your personal information.
+              </p>
+              <button className="bg-gradient-primary hover:shadow-cyber px-6 py-2 rounded-lg text-primary-foreground font-medium">
+                Start First Scan
+              </button>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              {/* This would show actual scan history */}
+            </div>
+          )}
+        </CardContent>
+      </Card>
     </div>
   );
 }
