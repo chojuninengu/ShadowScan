@@ -123,16 +123,16 @@ export function AIAssistant() {
 
       <CardContent className="flex-1 flex flex-col space-y-4">
         {/* Quick Actions */}
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-2 gap-2 md:gap-3">
           {quickActions.map((action, index) => (
             <Button
               key={index}
               variant="outline"
               size="sm"
-              className="text-xs h-8 bg-secondary/50 hover:bg-primary/20 hover:border-primary/50"
+              className="text-xs md:text-sm h-8 md:h-10 bg-secondary/50 hover:bg-primary/20 hover:border-primary/50 min-h-[2.5rem]"
               onClick={() => handleQuickAction(action.action)}
             >
-              <action.icon className="w-3 h-3 mr-1" />
+              <action.icon className="w-3 h-3 md:w-4 md:h-4 mr-1" />
               {action.label}
             </Button>
           ))}
@@ -189,21 +189,21 @@ export function AIAssistant() {
         </ScrollArea>
 
         {/* Input */}
-        <div className="flex gap-2">
+        <div className="flex gap-2 md:gap-3">
           <Input
             placeholder="Ask about your privacy risks, get protection advice..."
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && !isTyping && handleSend()}
-            className="flex-1 bg-secondary/50 border-border/50 focus:border-primary focus:ring-primary/20"
+            className="flex-1 bg-secondary/50 border-border/50 focus:border-primary focus:ring-primary/20 h-10 md:h-12 text-sm md:text-base"
           />
           <Button
             onClick={handleSend}
             disabled={!input.trim() || isTyping}
-            size="sm"
-            className="px-3 bg-gradient-primary hover:shadow-cyber"
+            size="icon"
+            className="bg-gradient-primary hover:shadow-cyber min-w-[2.5rem] md:min-w-[3rem]"
           >
-            <Send className="w-4 h-4" />
+            <Send className="w-4 h-4 md:w-5 md:h-5" />
           </Button>
         </div>
       </CardContent>
