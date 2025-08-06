@@ -181,14 +181,15 @@ const Login = () => {
           <div className="space-y-2">
             <Button 
               onClick={handleTestClick}
-              className="w-full bg-red-500 hover:bg-red-600"
+              size="lg"
+              className="w-full bg-red-500 hover:bg-red-600 min-h-[3rem]"
             >
               🧪 TEST BUTTON - Click me!
             </Button>
             
             <button
               onClick={handleBasicButtonClick}
-              className="w-full bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-md"
+              className="w-full bg-blue-500 hover:bg-blue-600 text-white p-3 md:p-4 rounded-md text-sm md:text-base min-h-[3rem] touch-manipulation"
             >
               🔵 BASIC HTML BUTTON - Click me!
             </button>
@@ -274,17 +275,18 @@ const Login = () => {
 
             <Button
               type="submit"
-              className="w-full bg-gradient-primary hover:shadow-cyber"
+              size="lg"
+              className="w-full bg-gradient-primary hover:shadow-cyber min-h-[3rem]"
               onClick={handleSignInClick}
               disabled={isLoading}
             >
               {isLoading ? (
                 <div className="flex items-center gap-2">
                   <div className="w-4 h-4 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
-                  <span>Signing in...</span>
+                  <span className="text-sm md:text-base">Signing in...</span>
                 </div>
               ) : (
-                <span>Sign In</span>
+                <span className="text-sm md:text-base">Sign In</span>
               )}
             </Button>
           </form>

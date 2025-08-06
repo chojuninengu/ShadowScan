@@ -113,17 +113,17 @@ const Landing = () => {
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
               <Link to="/signup">
-                <Button size="lg" className="bg-gradient-primary hover:shadow-cyber text-lg px-8 py-6">
-                  <Shield className="w-5 h-5 mr-2" />
+                <Button size="xl" className="bg-gradient-primary hover:shadow-cyber text-base md:text-lg px-6 md:px-8 py-4 md:py-6 min-h-[3.5rem] md:min-h-[4rem]">
+                  <Shield className="w-4 h-4 md:w-5 md:h-5 mr-2" />
                   Start Free Scan
-                  <ArrowRight className="w-5 h-5 ml-2" />
+                  <ArrowRight className="w-4 h-4 md:w-5 md:h-5 ml-2" />
                 </Button>
               </Link>
               <Link to="/login">
-                <Button variant="outline" size="lg" className="text-lg px-8 py-6 border-border/50 hover:bg-secondary/50">
-                  <Lock className="w-5 h-5 mr-2" />
+                <Button variant="outline" size="xl" className="text-base md:text-lg px-6 md:px-8 py-4 md:py-6 border-border/50 hover:bg-secondary/50 min-h-[3.5rem] md:min-h-[4rem]">
+                  <Lock className="w-4 h-4 md:w-5 md:h-5 mr-2" />
                   Sign In
                 </Button>
               </Link>
@@ -187,10 +187,10 @@ const Landing = () => {
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
               <Link to="/signup">
-                <Button size="lg" className="bg-gradient-primary hover:shadow-cyber text-lg px-8 py-6">
-                  <CheckCircle className="w-5 h-5 mr-2" />
+                <Button size="xl" className="bg-gradient-primary hover:shadow-cyber text-base md:text-lg px-6 md:px-8 py-4 md:py-6 min-h-[3.5rem] md:min-h-[4rem]">
+                  <CheckCircle className="w-4 h-4 md:w-5 md:h-5 mr-2" />
                   Start Your Free Trial
                 </Button>
               </Link>
