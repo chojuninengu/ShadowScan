@@ -155,3 +155,4 @@ pnpm-lock.yaml
 
 # Vite
 .vite/ 
+.claude/
