@@ -105,39 +105,39 @@ export function Dashboard() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="p-4 rounded-lg bg-secondary/50 border border-border/50 hover:border-primary/50 transition-colors cursor-pointer">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+            <div className="p-4 md:p-6 rounded-lg bg-secondary/50 border border-border/50 hover:border-primary/50 transition-colors cursor-pointer min-h-[5rem] md:min-h-[6rem]">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-gradient-primary flex items-center justify-center">
-                  <Shield className="w-5 h-5 text-primary-foreground" />
+                <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-gradient-primary flex items-center justify-center">
+                  <Shield className="w-4 h-4 md:w-5 md:h-5 text-primary-foreground" />
                 </div>
                 <div>
-                  <h3 className="font-semibold">Start New Scan</h3>
-                  <p className="text-sm text-muted-foreground">Scan for personal data exposure</p>
+                  <h3 className="font-semibold text-sm md:text-base">Start New Scan</h3>
+                  <p className="text-xs md:text-sm text-muted-foreground">Scan for personal data exposure</p>
                 </div>
               </div>
             </div>
 
-            <div className="p-4 rounded-lg bg-secondary/50 border border-border/50 hover:border-primary/50 transition-colors cursor-pointer">
+            <div className="p-4 md:p-6 rounded-lg bg-secondary/50 border border-border/50 hover:border-primary/50 transition-colors cursor-pointer min-h-[5rem] md:min-h-[6rem]">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-gradient-primary flex items-center justify-center">
-                  <Eye className="w-5 h-5 text-primary-foreground" />
+                <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-gradient-primary flex items-center justify-center">
+                  <Eye className="w-4 h-4 md:w-5 md:h-5 text-primary-foreground" />
                 </div>
                 <div>
-                  <h3 className="font-semibold">View Reports</h3>
-                  <p className="text-sm text-muted-foreground">Check your exposure history</p>
+                  <h3 className="font-semibold text-sm md:text-base">View Reports</h3>
+                  <p className="text-xs md:text-sm text-muted-foreground">Check your exposure history</p>
                 </div>
               </div>
             </div>
 
-            <div className="p-4 rounded-lg bg-secondary/50 border border-border/50 hover:border-primary/50 transition-colors cursor-pointer">
+            <div className="p-4 md:p-6 rounded-lg bg-secondary/50 border border-border/50 hover:border-primary/50 transition-colors cursor-pointer min-h-[5rem] md:min-h-[6rem]">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-gradient-primary flex items-center justify-center">
-                  <Brain className="w-5 h-5 text-primary-foreground" />
+                <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-gradient-primary flex items-center justify-center">
+                  <Brain className="w-4 h-4 md:w-5 md:h-5 text-primary-foreground" />
                 </div>
                 <div>
-                  <h3 className="font-semibold">AI Assistant</h3>
-                  <p className="text-sm text-muted-foreground">Get privacy recommendations</p>
+                  <h3 className="font-semibold text-sm md:text-base">AI Assistant</h3>
+                  <p className="text-xs md:text-sm text-muted-foreground">Get privacy recommendations</p>
                 </div>
               </div>
             </div>
@@ -163,7 +163,7 @@ export function Dashboard() {
               <p className="text-muted-foreground mb-4">
                 Start your first privacy scan to begin monitoring your personal information.
               </p>
-              <button className="bg-gradient-primary hover:shadow-cyber px-6 py-2 rounded-lg text-primary-foreground font-medium">
+              <button className="bg-gradient-primary hover:shadow-cyber px-4 md:px-6 py-2 md:py-3 rounded-lg text-primary-foreground font-medium text-sm md:text-base min-h-[2.5rem] md:min-h-[3rem]">
                 Start First Scan
               </button>
             </div>
