@@ -348,19 +348,20 @@ const Signup = () => {
 
             <Button
               type="submit"
-              className="w-full bg-gradient-primary hover:shadow-cyber"
+              size="lg"
+              className="w-full bg-gradient-primary hover:shadow-cyber min-h-[3rem]"
               onClick={handleCreateAccountClick}
               disabled={isLoading}
             >
               {isLoading ? (
                 <div className="flex items-center gap-2">
                   <div className="w-4 h-4 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
-                  <span>Creating account...</span>
+                  <span className="text-sm md:text-base">Creating account...</span>
                 </div>
               ) : (
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4" />
-                  <span>Create Account</span>
+                  <CheckCircle className="w-4 h-4 md:w-5 md:h-5" />
+                  <span className="text-sm md:text-base">Create Account</span>
                 </div>
               )}
             </Button>
@@ -377,12 +378,13 @@ const Signup = () => {
 
           <Button 
             variant="outline" 
-            className="w-full border-border/50 hover:bg-secondary/50" 
+            size="lg"
+            className="w-full border-border/50 hover:bg-secondary/50 min-h-[3rem]" 
             disabled={isLoading}
             onClick={handleGitHubSignup}
           >
-            <Github className="w-4 h-4 mr-2" />
-            Continue with GitHub
+            <Github className="w-4 h-4 md:w-5 md:h-5 mr-2" />
+            <span className="text-sm md:text-base">Continue with GitHub</span>
           </Button>
 
           <div className="text-center text-sm text-muted-foreground">
